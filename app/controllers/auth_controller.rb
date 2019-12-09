@@ -7,11 +7,11 @@ class AuthController < ApplicationController
             render json: {
                 message: "Login Successful",
                 user:user
-            }
+            }, status: :accepted
         else
             render json: {
                 message: "Login Failed"
-            }
+            }, status: :unauthorized
         end
     end
 
