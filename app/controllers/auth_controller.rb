@@ -1,7 +1,7 @@
 class AuthController < ApplicationController
 
     def create
-        user = User.find_by({username: params[:username], password: params[:password]})
+        user = User.find_by({username: params[:username]}).authenticate(params[:password])
 
         if user
             render json: {
