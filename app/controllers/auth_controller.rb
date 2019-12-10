@@ -4,9 +4,11 @@ class AuthController < ApplicationController
         user = User.find_by({username: params[:username]}).authenticate(params[:password])
 
         if user
+            payload = {user_id: user.id}
             render json: {
                 message: "Login Successful",
-                user:user
+                user: user,
+                token: encode(payload)
             }, status: :accepted
         else
             render json: {

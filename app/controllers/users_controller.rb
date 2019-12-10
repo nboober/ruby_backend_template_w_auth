@@ -10,6 +10,13 @@ class UsersController < ApplicationController
         render json: user
     end
 
+    def show
+        token = request.headers["Authorization"]
+        payload = decode(token)
+        user = User.find(payload["user_id"])
+        render json: user
+    end
+
     private
 
     def user_params
